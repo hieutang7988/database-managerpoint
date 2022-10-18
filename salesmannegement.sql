@@ -1,3 +1,4 @@
+drop database quanlybanhang;
 create database  QuanLyBanHang;
 use  QuanLyBanHang;
 create table Customer (
@@ -5,12 +6,12 @@ create table Customer (
 	cName varchar(255),
 	cAge int);
     
-    insert into Customer (cID, cName, cAge) values
-    (1, 'Hiếu',33),
-    (2, 'Tín', 35),
-    (3, 'Thuận', 34)
+    insert into Customer ( cName, cAge) values
+    ( 'Hiếu',33),
+    ( 'Tín', 35),
+    ( 'Thuận', 34)
     ;
-    drop table Customers;
+    -- orderscustomerdrop table Customers;
     
     create table Orders (
 		oID int not null auto_increment  primary key,
@@ -19,3 +20,16 @@ create table Customer (
         oDate Date ,
         oTotalPrice double
 		);
+        
+        create table Product (
+        pID INT NOT NULL auto_increment auto_increment primary KEY,
+        pName varchar(25) not null,
+        pPrice int not null);
+        
+        create table OrderDetail (
+        oID int,
+        pID int,
+        primary key (oID,pID),
+        foreign key(oID) references orders(oID),
+        foreign key(pID) references Product(pID),
+        odQTY INT NOT NULL);
